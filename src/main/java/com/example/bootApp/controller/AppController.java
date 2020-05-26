@@ -19,10 +19,15 @@ public class AppController {
     private ProductService productService;
 
     @RequestMapping("/")
+    public String viewHelloPage() {
+        return "hello";
+    }
+
+    @RequestMapping("/home")
     public String viewHomePage(Model model) {
         List<Product> listProducts = productService.getAll();
         model.addAttribute("listProducts", listProducts);
-        return "index";
+        return "home";
     }
 
     @RequestMapping("/new")
@@ -34,7 +39,7 @@ public class AppController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveProduct(@ModelAttribute("product") Product product) {
         productService.save(product);
-        return "redirect:/";
+        return "redirect:/home";
     }
     @RequestMapping("/edit/{id}")
     public String showEditProductPage(@PathVariable(name = "id") Long id, Model model) {
@@ -45,6 +50,6 @@ public class AppController {
     @RequestMapping("/delete/{id}")
     public String deleteProduct(@PathVariable(name = "id") Long id) {
         productService.delete(id);
-        return "redirect:/";
+        return "redirect:/home";
     }
 }

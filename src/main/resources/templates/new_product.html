@@ -6,6 +6,11 @@
     <title>Create new product</title>
 </head>
 <body>
+<div align="right">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
 <div align="center">
     <h1>Create new product</h1>
     <br/>
@@ -22,7 +27,7 @@
             </tr>
             <tr>
                 <td>Made In:</td>
-                <td><input type="text" th:field="*{madein}" /></td>
+                <td><input type="text" th:field="*{madeIn}" /></td>
             </tr>
             <tr>
                 <td>Price:</td>

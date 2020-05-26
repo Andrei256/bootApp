@@ -1,9 +1,6 @@
 package com.example.bootApp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -13,8 +10,9 @@ public class Product {
     private Long id;
     private String name;
     private String brand;
-    private String madein;
-    private float price;
+    @Column(name = "made_in")
+    private String madeIn;
+    private Float price;
 
     public Product() {
     }
@@ -43,19 +41,19 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getMadein() {
-        return madein;
+    public String getMadeIn() {
+        return madeIn;
     }
 
-    public void setMadein(String madein) {
-        this.madein = madein;
+    public void setMadeIn(String madeIn) {
+        this.madeIn = madeIn;
     }
 
     public float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -70,7 +68,7 @@ public class Product {
         if (id != null ? !id.equals(product.id) : product.id != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (brand != null ? !brand.equals(product.brand) : product.brand != null) return false;
-        return madein != null ? madein.equals(product.madein) : product.madein == null;
+        return madeIn != null ? madeIn.equals(product.madeIn) : product.madeIn == null;
     }
 
     @Override
@@ -78,7 +76,7 @@ public class Product {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (brand != null ? brand.hashCode() : 0);
-        result = 31 * result + (madein != null ? madein.hashCode() : 0);
+        result = 31 * result + (madeIn != null ? madeIn.hashCode() : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         return result;
     }

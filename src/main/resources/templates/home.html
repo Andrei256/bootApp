@@ -5,6 +5,11 @@
     <title>Product Manager</title>
 </head>
 <body>
+<div align="right">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
 <div align="center">
     <h1>Product List</h1>
     <a href="/new">Create new product</a>
@@ -25,7 +30,7 @@
                 <td th:text="${product.id}">Product ID</td>
                 <td th:text="${product.name}">Name</td>
                 <td th:text="${product.brand}">Brand</td>
-                <td th:text="${product.madein}">Made In</td>
+                <td th:text="${product.madeIn}">Made In</td>
                 <td th:text="${product.price}">Price</td>
                 <td>
                     <a th:href="@{'/edit/' + ${product.id}}">Edit</a>
@@ -33,12 +38,8 @@
                     <a th:href="@{'/delete/' + ${product.id}}">Delete</a>
                 </td>
             </tr>
-
         </tbody>
     </table>
 </div>
-
-
-
 </body>
 </html>
