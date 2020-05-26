@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+</head>
+<body>
+<h1 align="center">Registration new user</h1>
+
+<div align="center">
+    <form th:action="@{/registration}" method="post">
+        <label> User Name : <input type="text" name="username"/> </label>
+        <br/><br/>
+        <label> Password: <input type="password" name="password"/> </label>
+        <br/><br/>
+        <input type="submit" value="Create your account"/>
+        <br/><br/>
+        <div th:if="${param.error}">
+            User exist!
+            <br/><br/>
+        </div>
+        <a href="/login">Login</a>
+    </form>
+</div>
+</body>
+</html>
