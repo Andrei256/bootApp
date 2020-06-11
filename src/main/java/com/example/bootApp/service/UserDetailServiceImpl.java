@@ -1,6 +1,5 @@
 package com.example.bootApp.service;
 
-import com.example.bootApp.model.User;
 import com.example.bootApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,8 +1,10 @@
 package com.example.bootApp.controller;
 
 import com.example.bootApp.model.Product;
+import com.example.bootApp.model.Users;
 import com.example.bootApp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,7 +39,9 @@ public class AppController {
         return "new_product";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("product") Product product) {
+    public String saveProduct(@AuthenticationPrincipal Users seller, @ModelAttribute("product") Product product) {
+        product.setSeller(seller);
+        System.out.println(product);
         productService.save(product);
         return "redirect:/home";
     }

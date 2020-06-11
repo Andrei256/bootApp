@@ -12,9 +12,25 @@ public class Product {
     private String brand;
     @Column(name = "made_in")
     private String madeIn;
-    private Float price;
+    private float price;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private Users seller;
 
     public Product() {
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Users getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Users seller) {
+        this.seller = seller;
     }
 
     public Long getId() {
@@ -79,5 +95,17 @@ public class Product {
         result = 31 * result + (madeIn != null ? madeIn.hashCode() : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", madeIn='" + madeIn + '\'' +
+                ", price=" + price +
+                ", buyer=" + seller +
+                '}';
     }
 }

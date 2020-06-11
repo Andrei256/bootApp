@@ -22,6 +22,7 @@
                 <th>Brand</th>
                 <th>Made In</th>
                 <th>Price</th>
+                <th>Seller</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -32,6 +33,7 @@
                 <td th:text="${product.brand}">Brand</td>
                 <td th:text="${product.madeIn}">Made In</td>
                 <td th:text="${product.price}">Price</td>
+                <td th:text="${product.seller.username}">Seller</td>
                 <td>
                     <a th:href="@{'/edit/' + ${product.id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;

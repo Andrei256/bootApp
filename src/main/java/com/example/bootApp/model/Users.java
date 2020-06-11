@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-public class User implements UserDetails {
+public class Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -93,13 +93,13 @@ public class User implements UserDetails {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
 
-        User user = (User) object;
+        Users users = (Users) object;
 
-        if (active != user.active) return false;
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return roles != null ? roles.equals(user.roles) : user.roles == null;
+        if (active != users.active) return false;
+        if (id != null ? !id.equals(users.id) : users.id != null) return false;
+        if (username != null ? !username.equals(users.username) : users.username != null) return false;
+        if (password != null ? !password.equals(users.password) : users.password != null) return false;
+        return roles != null ? roles.equals(users.roles) : users.roles == null;
     }
 
     @Override
@@ -110,5 +110,16 @@ public class User implements UserDetails {
         result = 31 * result + (active ? 1 : 0);
         result = 31 * result + (roles != null ? roles.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", roles=" + roles +
+                '}';
     }
 }
