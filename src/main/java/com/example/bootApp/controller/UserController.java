@@ -9,14 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping("/user")
-//@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
 
     @Autowired
@@ -35,26 +33,16 @@ public class UserController {
         model.addAttribute("roles", Role.values());
         return "userEdit";
     }
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("{id}")
     public String userSave(
             @RequestParam String username,
-            @RequestParam Map<String, String> form,
-//            @RequestParam("userId") Users user
-            @ModelAttribute("user") Users user
+            @PathVariable(name = "id") Long id,
+            @RequestParam Set<Role> roles
     ) {
+        Users user = userService.get(id);
         user.setUsername(username);
+        user.setRoles(roles);
         System.out.println(user);
-        Set<String> roles = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toSet());
-
-        user.getRoles().clear();
-
-        for (String key : form.keySet()) {
-            if (roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
 
         userService.save(user);
         return "redirect:/user";
