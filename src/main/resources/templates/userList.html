@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<div align="right">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+<div align="center">
+    <h1>Product List</h1>
+
+    <table  border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Role</th>
+            <th>User Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="users : ${userList}">
+            <td th:text="${users.id}">Id</td>
+            <td>
+                <a th:each="role : ${users.roles}">
+                    <a th:text="${role}">Role</a>
+                </a>
+            </td>
+            <td th:text="${users.username}">User Name</td>
+            <td>
+                <a th:href="@{'/user/' + ${users.id}}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

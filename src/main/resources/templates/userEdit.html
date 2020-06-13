@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<div align="right">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div align="center">
+<form action="#" th:action="@{/user/save}" th:object="${user}" method="post">
+    <table border="0" cellpadding="10">
+        <tr>
+            <td>Id:</td>
+            <td th:text="${user.id}">Id</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{username}"></td>
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td>
+                <a th:each="role : ${roles}">
+                  <input type="checkbox" th:text="${role}" th:value="${role}" th:checked="${#sets.contains(user.roles, role)}?'checked':'no'">
+                </a>
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
+</div>
+</body>
+</html>
