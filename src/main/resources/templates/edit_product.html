@@ -14,8 +14,21 @@
 <div align="center">
     <h1>Edit product</h1>
     <br/>
-    <form action="#" th:action="@{/save}" th:object="${product}" method="post">
-        <table border="0" cellpadding="10">
+    <form action="#" th:action="@{/save}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <table border="1" cellpadding="10">
+            <tr>
+                <td>Img:</td>
+                <td th:if="${product.filename} != null">
+                    <img th:src="@{'/img/' + ${product.filename}}">
+                </td>
+                <td th:if="${product.filename} == null">
+                    <img th:src="@{'/img/no.png'}">
+                </td>
+            </tr>
+            <tr>
+                <td>Upload</td>
+                <td><input type="file" th:name="file"/></td>
+            </tr>
             <tr>
                 <td>Product id:</td>
                 <td><input type="text" th:field="*{id}" readonly="readonly"></td>

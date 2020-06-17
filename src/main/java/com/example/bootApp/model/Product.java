@@ -13,6 +13,7 @@ public class Product {
     @Column(name = "made_in")
     private String madeIn;
     private float price;
+    private String filename;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -73,6 +74,14 @@ public class Product {
         this.price = price;
     }
 
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
@@ -84,7 +93,9 @@ public class Product {
         if (id != null ? !id.equals(product.id) : product.id != null) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
         if (brand != null ? !brand.equals(product.brand) : product.brand != null) return false;
-        return madeIn != null ? madeIn.equals(product.madeIn) : product.madeIn == null;
+        if (madeIn != null ? !madeIn.equals(product.madeIn) : product.madeIn != null) return false;
+        if (filename != null ? !filename.equals(product.filename) : product.filename != null) return false;
+        return seller != null ? seller.equals(product.seller) : product.seller == null;
     }
 
     @Override
@@ -94,6 +105,8 @@ public class Product {
         result = 31 * result + (brand != null ? brand.hashCode() : 0);
         result = 31 * result + (madeIn != null ? madeIn.hashCode() : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + (filename != null ? filename.hashCode() : 0);
+        result = 31 * result + (seller != null ? seller.hashCode() : 0);
         return result;
     }
 
@@ -105,7 +118,8 @@ public class Product {
                 ", brand='" + brand + '\'' +
                 ", madeIn='" + madeIn + '\'' +
                 ", price=" + price +
-                ", buyer=" + seller +
+                ", filename='" + filename + '\'' +
+                ", seller=" + seller +
                 '}';
     }
 }
