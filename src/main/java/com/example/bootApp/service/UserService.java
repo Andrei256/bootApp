@@ -10,4 +10,6 @@ public interface UserService {
     Users get(Long id);
     void delete(Long id);
     Users findByUsername(String username);
+    public boolean addUser(Users user);
+    boolean activateUser(String code);
 }

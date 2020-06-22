@@ -16,6 +16,8 @@ public class Users implements UserDetails {
     private String username;
     private String password;
     private boolean active;
+    private String email;
+    private String activationCode;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -88,6 +90,22 @@ public class Users implements UserDetails {
         return isActive();
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
@@ -99,6 +117,9 @@ public class Users implements UserDetails {
         if (id != null ? !id.equals(users.id) : users.id != null) return false;
         if (username != null ? !username.equals(users.username) : users.username != null) return false;
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
+        if (email != null ? !email.equals(users.email) : users.email != null) return false;
+        if (activationCode != null ? !activationCode.equals(users.activationCode) : users.activationCode != null)
+            return false;
         return roles != null ? roles.equals(users.roles) : users.roles == null;
     }
 
@@ -108,6 +129,8 @@ public class Users implements UserDetails {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (activationCode != null ? activationCode.hashCode() : 0);
         result = 31 * result + (roles != null ? roles.hashCode() : 0);
         return result;
     }
@@ -119,6 +142,8 @@ public class Users implements UserDetails {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
+                ", email='" + email + '\'' +
+                ", activationCode='" + activationCode + '\'' +
                 ", roles=" + roles +
                 '}';
     }
