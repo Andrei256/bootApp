@@ -24,16 +24,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="users : ${userList}">
-            <td th:text="${users.id}">Id</td>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.id}">Id</td>
             <td>
-                <a th:each="role : ${users.roles}">
+                <a th:each="role : ${user.roles}">
                     <a th:text="${role}">Role</a>
                 </a>
             </td>
-            <td th:text="${users.username}">User Name</td>
+            <td th:text="${user.username}">User Name</td>
             <td>
-                <a th:href="@{'/user/' + ${users.id}}">Edit</a>
+                <a th:href="@{'/user/' + ${user.id}}">Edit</a>
             </td>
         </tr>
         </tbody>

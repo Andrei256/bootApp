@@ -1,7 +1,7 @@
 package com.example.bootApp.controller;
 
 import com.example.bootApp.model.Product;
-import com.example.bootApp.model.Users;
+import com.example.bootApp.model.User;
 import com.example.bootApp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +26,9 @@ public class AppController {
     private String uploadPath;
 
     @RequestMapping("/")
-    public String viewHelloPage() {
+    public String viewHelloPage()
+
+    {
         return "hello";
     }
 
@@ -44,7 +46,7 @@ public class AppController {
         return "new_product";
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(@AuthenticationPrincipal Users seller,
+    public String saveProduct(@AuthenticationPrincipal User seller,
                               @ModelAttribute("product") Product product,
                               @RequestParam("file") MultipartFile file
     ) throws IOException {

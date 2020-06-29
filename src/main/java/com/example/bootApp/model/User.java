@@ -8,7 +8,8 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-public class Users implements UserDetails {
+@Table(name = "usr")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,16 +112,16 @@ public class Users implements UserDetails {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
 
-        Users users = (Users) object;
+        User user = (User) object;
 
-        if (active != users.active) return false;
-        if (id != null ? !id.equals(users.id) : users.id != null) return false;
-        if (username != null ? !username.equals(users.username) : users.username != null) return false;
-        if (password != null ? !password.equals(users.password) : users.password != null) return false;
-        if (email != null ? !email.equals(users.email) : users.email != null) return false;
-        if (activationCode != null ? !activationCode.equals(users.activationCode) : users.activationCode != null)
+        if (active != user.active) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (activationCode != null ? !activationCode.equals(user.activationCode) : user.activationCode != null)
             return false;
-        return roles != null ? roles.equals(users.roles) : users.roles == null;
+        return roles != null ? roles.equals(user.roles) : user.roles == null;
     }
 
     @Override

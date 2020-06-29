@@ -1,7 +1,7 @@
 package com.example.bootApp.controller;
 
 import com.example.bootApp.model.Role;
-import com.example.bootApp.model.Users;
+import com.example.bootApp.model.User;
 import com.example.bootApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @RequestMapping("{user}")
-    public String userEditFrom(@PathVariable Users user, Model model) {
+    public String userEditFrom(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
         System.out.println(user);
         model.addAttribute("roles", Role.values());
@@ -39,7 +39,7 @@ public class UserController {
             @PathVariable(name = "id") Long id,
             @RequestParam Set<Role> roles
     ) {
-        Users user = userService.get(id);
+        User user = userService.get(id);
         user.setUsername(username);
         user.setRoles(roles);
         System.out.println(user);

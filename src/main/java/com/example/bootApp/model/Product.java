@@ -17,7 +17,7 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private Users seller;
+    private User seller;
 
     public Product() {
     }
@@ -26,11 +26,11 @@ public class Product {
         this.price = price;
     }
 
-    public Users getSeller() {
+    public User getSeller() {
         return seller;
     }
 
-    public void setSeller(Users seller) {
+    public void setSeller(User seller) {
         this.seller = seller;
     }
 

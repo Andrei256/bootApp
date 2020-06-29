@@ -1,6 +1,6 @@
 package com.example.bootApp.controller;
 
-import com.example.bootApp.model.Users;
+import com.example.bootApp.model.User;
 import com.example.bootApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class RegistrationController {
         return "registration";
     }
     @PostMapping("/registration")
-    public String addUser(Users user) {
+    public String addUser(User user) {
 
         if (userService.addUser(user)) {
             return "redirect:/login";

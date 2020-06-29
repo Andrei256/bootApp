@@ -1,10 +1,9 @@
 package com.example.bootApp.service;
 
 import com.example.bootApp.model.Role;
-import com.example.bootApp.model.Users;
+import com.example.bootApp.model.User;
 import com.example.bootApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -28,17 +27,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(Users users) {
-        userRepository.save(users);
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
-    public List<Users> getAll() {
+    public List<User> getAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public Users get(Long id) {
+    public User get(Long id) {
         return userRepository.findById(id).get();
     }
 
@@ -48,14 +47,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public boolean addUser(Users user) {
-        Users usersFromDB = userRepository.findByUsername(user.getUsername());
+    public boolean addUser(User user) {
+        User userFromDB = userRepository.findByUsername(user.getUsername());
 
-        if (usersFromDB != null) {
+        if (userFromDB != null) {
             return false;
         }
         user.setActive(true);
@@ -80,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean activateUser(String code) {
-        Users user = userRepository.findByActivationCode(code);
+        User user = userRepository.findByActivationCode(code);
 
         if (user == null) {
             return false;
