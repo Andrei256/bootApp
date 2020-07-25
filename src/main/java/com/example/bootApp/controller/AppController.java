@@ -65,7 +65,6 @@ public class AppController {
         }
 
         product.setSeller(seller);
-        System.out.println(product);
         productService.save(product);
         return "redirect:/home";
     }
